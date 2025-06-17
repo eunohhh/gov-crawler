@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    container_name: gov-crawler-app
+    environment:
+      - GOOGLE_SERVICE_ACCOUNT_EMAIL=${GOOGLE_SERVICE_ACCOUNT_EMAIL}
+      - GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY=${GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY}
+      - GOOGLE_SHEET_ID=${GOOGLE_SHEET_ID}
+    expose:
+      - "3001"
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: gov-crawler-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    restart: unless-stopped

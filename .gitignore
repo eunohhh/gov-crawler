@@ -6,5 +6,3 @@ node_modules
 .env.production.local
 credentials.json
 
-Dockerfile
-.dockerignore
