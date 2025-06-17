@@ -10,13 +10,3 @@ services:
     expose:
       - "3001"
     restart: unless-stopped
-
-  nginx:
-    build:
-      context: ./nginx
-    container_name: gov-crawler-nginx
-    ports:
-      - "80:80"
-    depends_on:
-      - app
-    restart: unless-stopped
