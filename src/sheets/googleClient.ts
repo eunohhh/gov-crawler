@@ -2,7 +2,10 @@ import "dotenv/config";
 import { google } from "googleapis";
 
 const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(
+  /\\n/g,
+  "\n"
+);
 const sheetId = process.env.GOOGLE_SHEET_ID;
 
 if (!serviceAccountEmail || !privateKey || !sheetId) {
