@@ -34,7 +34,7 @@ export const appendRowsToSheet = async (rows: string[][], range = "A1") => {
 export const getLastNttSeqNo = async (): Promise<string | null> => {
   const res = await sheets.spreadsheets.values.get({
     spreadsheetId: sheetId,
-    range: "crawling!F2:F", // F열 = url
+    range: "crawling!C2:C", // C열 = nttSeqNo
   });
 
   const urls = res.data.values?.map((row) => row[0]) ?? [];
