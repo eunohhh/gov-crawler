@@ -12,9 +12,11 @@ interface Post {
   category: string;
 }
 
+// 크롤링 하고자 하는 게시판의 주소
 const BASE_URL =
   "https://www.msit.go.kr/bbs/list.do?sCode=user&mId=311&mPid=121";
 
+// 크롤링 하고자 하는 게시판의 게시글 주소
 export const DETAIL_URL = (nttSeqNo: string) =>
   `https://www.msit.go.kr/bbs/view.do?sCode=user&mId=311&mPid=121&pageIndex=&bbsSeqNo=100&nttSeqNo=${nttSeqNo}&searchOpt=ALL&searchTxt=`;
 
@@ -30,6 +32,8 @@ export const crawlMSITPosts = async (): Promise<Post[]> => {
     console.log(`📄 페이지 ${pageIndex} 접근 중: ${url}`);
     await page.goto(url, { waitUntil: "domcontentloaded" });
 
+    // 페이지에서 게시글 목록 추출
+    // locator에 요소의 셀렉터를 넣어주면 해당 요소를 찾게 됩니다.
     const postsOnPage = await page
       .locator("#result > div.board_list > div.toggle")
       .evaluateAll((toggles, pageNum) => {
