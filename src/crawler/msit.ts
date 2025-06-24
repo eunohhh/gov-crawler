@@ -25,7 +25,7 @@ export const crawlMSITPosts = async (): Promise<Post[]> => {
 
   console.log("🔍 MSIT 크롤링 시작...");
 
-  for (let pageIndex = 1; pageIndex <= 2; pageIndex++) {
+  for (let pageIndex = 1; pageIndex <= 5; pageIndex++) {
     const url = `${BASE_URL}&pageIndex=${pageIndex}`;
     console.log(`📄 페이지 ${pageIndex} 접근 중: ${url}`);
     await page.goto(url, { waitUntil: "domcontentloaded" });
